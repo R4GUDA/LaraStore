@@ -9,5 +9,12 @@ class Product extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    protected $fillable = [
+        'title',
+        'price'
+    ];
+
+    public function orders() {
+        return $this->belongsToMany(Order::class);
+    }
 }

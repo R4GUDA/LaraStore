@@ -10,14 +10,16 @@ use Illuminate\Http\RedirectResponse;
 
 class ProductController extends Controller
 {
-    public function create(CreateProductRequest $request): RedirectResponse {
-        Product::create($request->all());
+    public function index() {
+        $products = Product::latest()->paginate(12);
 
-        return back();
+        return view('products', [
+            'products' => $products
+        ]);
     }
 
-    public function update(UpdateProductRequest $request, Product $product): RedirectResponse {
-        $product->update($request->all());
+    public function store(CreateProductRequest $request): RedirectResponse {
+        Product::create($request->all());
 
         return back();
     }
@@ -28,10 +30,16 @@ class ProductController extends Controller
         ]);
     }
 
-    public function delete(Product $product) {
+    public function update(UpdateProductRequest $request, Product $product): RedirectResponse {
+        $product->update($request->all());
+
+        return back();
+    }
+
+    public function destroy(Product $product) {
         $product->delete();
 
-        return redirect(route([]));
+        return redirect(route('product.index'));
     }
 
 }
