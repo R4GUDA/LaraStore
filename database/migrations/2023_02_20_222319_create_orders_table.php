@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('phone');
-            $table->string('mail');
-            $table->string('address');
+            $table->string('phone')->nullable();
+            $table->string('email');
+            $table->string('address')->nullable();
+            $table->string('secret');
+            $table->date('delivery_date');
             $table->softDeletes();
             $table->timestamps();
         });
