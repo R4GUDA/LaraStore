@@ -17,8 +17,8 @@ class OrderProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_id' => rand(0, 100),
-            'order_id' => rand(0, 100),
+            'product_id' => rand(0, 1000),
+            'order_id' => rand(0, 1000),
             'amount' => rand(0, 10)
         ];
     }
