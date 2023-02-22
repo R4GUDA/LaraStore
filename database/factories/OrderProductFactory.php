@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\OrderProduct>
  */
-class ProductFactory extends Factory
+class OrderProductFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,9 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->text(10),
-            'price' => $this->faker->randomFloat(2, 0, 5000)
+            'product_id' => rand(0, 100),
+            'order_id' => rand(0, 100),
+            'amount' => rand(0, 10)
         ];
     }
 }
