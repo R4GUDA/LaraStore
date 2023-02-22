@@ -46,6 +46,8 @@ class OrderController extends Controller
     public function find(Request $request) {
         $order = Order::whereSecret($request->secret)->first();
 
+        if(!$order) return back();
+
         $total = 0;
 
         foreach ($order->products as $product) {
