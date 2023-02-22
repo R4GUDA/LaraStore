@@ -17,6 +17,7 @@
                     <th>ID</th>
                     <th>Delivery date</th>
                     <th>email</th>
+                    <th>secret</th>
                     <th>phone</th>
                     <th>address</th>
                 </tr>
@@ -27,6 +28,7 @@
                         <td class="py-1">{{$order->id}}</td>
                         <td class="py-1">{{$order->delivery_date}}</td>
                         <td class="py-1">{{$order->email}}</td>
+                        <td class="py-1">{{$order->secret}}</td>
                         <td class="py-1">{{$order->phone}}</td>
                         <td class="py-1">{{$order->address}}</td>
                         <td class="py-1"><a class="bg-green-300 p-1 rounded" href="{{ route('order.show', $order->id) }}">Open</a></td>
