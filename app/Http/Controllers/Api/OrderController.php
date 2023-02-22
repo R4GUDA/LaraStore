@@ -27,9 +27,12 @@ class OrderController extends Controller
     }
 
     public function store(CreateOrderRequest $request) {
-        if (OrderService::calcTotal($request) < 3000) return MinPriceResource::make([]);
+        $total = OrderService::calcTotal($request);
+        if ($total < 3000) return MinPriceResource::make([]);
 
         $orders = OrderService::store($request);
+
+        $orders->total = $total;
 
         return OrderCreatedResource::make($orders);
     }
@@ -48,6 +51,14 @@ class OrderController extends Controller
 
     public function update(UpdateOrderRequest $request, Order $order) {
         $order = OrderService::update($request, $order);
+
+        $total = 0;
+
+        foreach ($order->products as $product) {
+            $total += $product->pivot->amount * $product->price;
+        }
+
+        $order->total = round($total,2);
 
         return OrderUpdatedResource::make($order);
     }

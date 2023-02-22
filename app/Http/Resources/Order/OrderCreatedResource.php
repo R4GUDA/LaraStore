@@ -22,6 +22,7 @@ class OrderCreatedResource extends JsonResource
             'address' => $this->address,
             'secret' => $this->secret,
             'delivery_date' => $this->delivery_date,
+            'total' => $this->total,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'positions' => PositionsListResource::collection($this->products)
