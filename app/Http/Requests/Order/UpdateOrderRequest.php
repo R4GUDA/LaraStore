@@ -5,7 +5,7 @@ namespace App\Http\Requests\Order;
 use App\Rules\Phone;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateOrderRequest extends FormRequest
+class UpdateOrderRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -18,10 +18,7 @@ class CreateOrderRequest extends FormRequest
             'delivery_date' => 'required|date',
             'email' => 'required|email',
             'phone' => new Phone(),
-            'address' => 'max:255',
-            'positions' => 'required|min:1',
-            'positions.*.product_id' => 'required|numeric',
-            'positions.*.amount' => 'required|numeric'
+            'address' => 'max:255'
         ];
     }
 }
